@@ -19,7 +19,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     void CheckIndexException(int index) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new ArrayIndexOutOfBoundsException();
         }
     }
