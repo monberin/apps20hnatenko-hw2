@@ -27,7 +27,7 @@ public class ImmutableLinkedList implements ImmutableList {
     }
 
     void CheckIndexException(int index) {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             throw new ArrayIndexOutOfBoundsException();
         }
     }
@@ -49,7 +49,7 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList addAll(int index, Object[] c) {
-        CheckIndexException(index-1);
+        CheckIndexException(index);
         Object[] arr = new Object[c.length + size];
         System.arraycopy(c, 0, arr, index, c.length);
         System.arraycopy(this.array, index, arr, index+c.length, size - index);
@@ -109,11 +109,58 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return this.size == 0;
     }
 
     @Override
     public Object[] toArray() {
         return this.array;
     }
+
+    public ImmutableLinkedList addFirst(Object e){
+//        Object[] arr = new Object[1 + size];
+//        arr[0] = e;
+//        System.arraycopy(this.array, 0, arr, 1, size);
+//        return new ImmutableLinkedList(arr);
+        return add(0,e);
+    } // додає елемент у початок зв'язаного списку
+
+
+    public ImmutableLinkedList addLast(Object e){
+        if (size>0) {
+            return add(this.size, e);
+        }
+        return add(0,e);
+    } // додає елемент у кінець зв'язаного списку
+
+
+    public Object getFirst(){
+        return this.array[0];
+    }
+
+
+    public Object getLast(){
+        if (size>0) {
+            return this.array[this.size - 1];
+        }
+        return -1;
+    }
+
+
+    public ImmutableLinkedList removeFirst(){
+        if (size>0) {
+            return remove(0);
+        }
+        return new ImmutableLinkedList();
+    } // видаляє перший елемент
+
+
+
+    public ImmutableLinkedList removeLast(){
+        if (size>0) {
+            return remove(this.size - 1);
+        }
+        return new ImmutableLinkedList();
+    } // видаляє останній елемент
+
 }

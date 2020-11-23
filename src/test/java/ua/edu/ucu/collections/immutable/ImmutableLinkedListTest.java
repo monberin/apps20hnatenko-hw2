@@ -105,4 +105,53 @@ public class ImmutableLinkedListTest {
         assertArrayEquals(array, newArray);
     }
 
+    @Test
+    public void testGetFirst() {
+        Integer[] array = {0, 10, -5, 2};
+        ImmutableLinkedList arr = new ImmutableLinkedList(array);
+        Object first = arr.getFirst();
+        assertEquals(first, 0);
+    }
+
+
+    @Test
+    public void testGetLast() {
+        Integer[] array = {0, 10, -5, 2};
+        ImmutableLinkedList arr = new ImmutableLinkedList(array);
+        Object last = arr.getLast();
+        assertEquals(last, 2);
+    }
+
+    @Test
+    public void testAddFirst() {
+        Integer[] array = {0, 10, -5, 2};
+        ImmutableLinkedList arr = new ImmutableLinkedList(array);
+        ImmutableLinkedList newArr = arr.addFirst(3);
+        assertEquals((int) newArr.getFirst(), 3);
+    }
+
+    @Test
+    public void testAddLast() {
+        Integer[] array = {0, 10, -5, 2};
+        ImmutableLinkedList arr = new ImmutableLinkedList(array);
+        ImmutableLinkedList newArr = arr.addLast(3);
+        assertEquals((int) newArr.getLast(), 3);
+    }
+
+    @Test
+    public void testRemoveLast() {
+        Integer[] array = {0, 10, -5, 2};
+        ImmutableLinkedList arr = new ImmutableLinkedList(array);
+        ImmutableLinkedList newArr = arr.removeLast();
+        assertEquals((int) newArr.getLast(), -5);
+    }
+
+    @Test
+    public void testRemoveFirst() {
+        Integer[] array = {0, 10, -5, 2};
+        ImmutableLinkedList arr = new ImmutableLinkedList(array);
+        ImmutableLinkedList newArr = arr.removeFirst();
+        assertEquals((int) newArr.get(0), 10);
+    }
+
 }
