@@ -5,17 +5,17 @@ import ua.edu.ucu.collections.immutable.ImmutableLinkedList;
 public class Stack {
     private ImmutableLinkedList lst = new ImmutableLinkedList();
 
-    public Stack(){
+    public Stack() {
 
     }
-    public Object peek(){
-        if (this.lst.isEmpty()){
+    public Object peek() {
+        if (this.lst.isEmpty()) {
             return null;
         }
         return this.lst.getLast();
     }
-    public Object pop(){
-        if (this.lst.isEmpty()){
+    public Object pop() {
+        if (this.lst.isEmpty()) {
             throw new IndexOutOfBoundsException();
         }
         Object popped = this.lst.getLast();

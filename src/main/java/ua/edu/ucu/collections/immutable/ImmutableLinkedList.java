@@ -127,7 +127,7 @@ public class ImmutableLinkedList implements ImmutableList {
     @Override
     public int indexOf(Object e) {
         Node current = this.head;
-        for (int i = 0; i < this.size; i++){
+        for (int i = 0; i < this.size; i++) {
             if (current.getVal() == e) {
                 return i;
             }
