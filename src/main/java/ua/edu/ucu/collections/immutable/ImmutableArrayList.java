@@ -4,7 +4,7 @@ public class ImmutableArrayList implements ImmutableList {
     private Object[] array = {};
     private int size = 0;
 
-    public ImmutableArrayList(){
+    public ImmutableArrayList() {
 
     }
 
@@ -71,8 +71,8 @@ public class ImmutableArrayList implements ImmutableList {
 
     @Override
     public int indexOf(Object e) {
-        for (int i = 0; i < size; i++){
-            if (this.array[i] == e){
+        for (int i = 0; i < size; i++) {
+            if (this.array[i] == e) {
                 return i;
             }
         }

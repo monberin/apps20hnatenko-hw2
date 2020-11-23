@@ -7,7 +7,7 @@ public class ImmutableLinkedList implements ImmutableList {
     private Node head;
     private Node tail;
 
-    public ImmutableLinkedList(){
+    public ImmutableLinkedList() {
 
     }
 
@@ -17,7 +17,7 @@ public class ImmutableLinkedList implements ImmutableList {
             if (size == 0) {
                 this.head = node;
             }
-            else{
+            else {
                 this.tail.setNext(node);
                 node.setPrev(this.tail);
             }
@@ -66,7 +66,6 @@ public class ImmutableLinkedList implements ImmutableList {
         for (int q = i + j; q < arr.length; q++) {
             arr[q] = current.getVal();
             current = current.getNext();
-            q++;
         }
         return new ImmutableLinkedList(arr);
     }
@@ -75,9 +74,10 @@ public class ImmutableLinkedList implements ImmutableList {
     public Object get(int index) {
         checkIndexException(index);
         Node node = this.head;
-        while (index > 0){
+        int i = 0;
+        while (i < index) {
             node = node.getNext();
-            index -= 1;
+            i += 1;
         }
         return node.getVal();
     }
@@ -90,7 +90,7 @@ public class ImmutableLinkedList implements ImmutableList {
         int j = 0;
         int i = 0;
 //        for (int i= 0; i <= arr.length; i++)
-        while(current != null)
+        while (current != null)
         {
             if (i != index)
             {
@@ -114,9 +114,8 @@ public class ImmutableLinkedList implements ImmutableList {
             if (i != index)
             {
                 arr[i] = current.getVal();
-
             }
-            else{
+            else {
                 arr[i] = e;
             }
             current = current.getNext();
@@ -129,7 +128,7 @@ public class ImmutableLinkedList implements ImmutableList {
     public int indexOf(Object e) {
         Node current = this.head;
         for (int i = 0; i < this.size; i++){
-            if (current.getVal() == e){
+            if (current.getVal() == e) {
                 return i;
             }
             current = current.getNext();
