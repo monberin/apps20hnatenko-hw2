@@ -8,7 +8,7 @@ public class ImmutableArrayList implements ImmutableList {
 
     }
 
-    public ImmutableArrayList(Object[] list){
+    public ImmutableArrayList(Object[] list) {
         this.array = list;
         this.size = list.length;
     }
@@ -18,7 +18,7 @@ public class ImmutableArrayList implements ImmutableList {
         return addAll(size, new Object[]{e});
     }
 
-    void CheckIndexException(int index) {
+    void checkIndexException(int index) {
         if (index < 0 || index > size) {
             throw new ArrayIndexOutOfBoundsException();
         }
@@ -36,7 +36,7 @@ public class ImmutableArrayList implements ImmutableList {
 
     @Override
     public ImmutableArrayList addAll(int index, Object[] c) {
-        CheckIndexException(index);
+        checkIndexException(index);
         Object[] arr = new Object[c.length + size];
         System.arraycopy(c, 0, arr, index, c.length);
         System.arraycopy(this.array, index, arr, index+c.length, size - index);
@@ -46,13 +46,13 @@ public class ImmutableArrayList implements ImmutableList {
 
     @Override
     public Object get(int index) {
-        CheckIndexException(index);
+        checkIndexException(index);
         return this.array[index];
     }
 
     @Override
     public ImmutableArrayList remove(int index) {
-        CheckIndexException(index);
+        checkIndexException(index);
         Object[] arr = new Object[size-1];
         System.arraycopy(this.array, index+1, arr, index, size - (index+1));
         System.arraycopy(this.array, 0, arr, 0, index);
@@ -61,7 +61,7 @@ public class ImmutableArrayList implements ImmutableList {
 
     @Override
     public ImmutableArrayList set(int index, Object e) {
-        CheckIndexException(index);
+        checkIndexException(index);
         Object[] arr = new Object[size];
         System.arraycopy(this.array, index+1, arr, index+1, size - index-1);
         System.arraycopy(this.array, 0, arr, 0, index);
@@ -100,12 +100,12 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public String toString(){
-        String strng = "";
-        strng += this.array[0];
+    public String toString() {
+        StringBuilder strng = new StringBuilder();
+        strng.append(this.array[0]);
         for (int i = 1; i < this.size; i++) {
-            strng += ", " + this.array[i];
+            strng.append(", ").append(this.array[i]);
         }
-        return strng;
+        return strng.toString();
     } //повертає рядок, де через кому відображаютсься елементи колекції
 }

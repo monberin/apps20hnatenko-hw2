@@ -3,7 +3,6 @@ package ua.edu.ucu.collections.immutable;
 import java.util.Arrays;
 
 public class ImmutableLinkedList implements ImmutableList {
-//    private Object[] array = {};
     private int size = 0;
     private Node head;
     private Node tail;
@@ -12,8 +11,7 @@ public class ImmutableLinkedList implements ImmutableList {
 
     }
 
-    public ImmutableLinkedList(Object[] list){
-//        this.array = list;
+    public ImmutableLinkedList(Object[] list) {
         for (Object o : list) {
             Node node = new Node(o, null, null);
             if (size == 0) {
@@ -28,7 +26,7 @@ public class ImmutableLinkedList implements ImmutableList {
         }
     }
 
-    void CheckIndexException(int index) {
+    void checkIndexException(int index) {
         if (index < 0 || index > size) {
             throw new ArrayIndexOutOfBoundsException();
         }
@@ -51,25 +49,21 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList addAll(int index, Object[] c) {
-        CheckIndexException(index);
+        checkIndexException(index);
         Object[] arr = new Object[c.length + size];
-//        System.arraycopy(c, 0, arr, index, c.length);
-//        System.arraycopy(this.array, index, arr, index+c.length, size - index);
-//        System.arraycopy(this.array, 0, arr, 0, index);
-//        return new ImmutableLinkedList(arr);
         int i = 0, j = 0;
         Node current = this.head;
 
-        for(i = 0; i < index; i++) {
+        for (i = 0; i < index; i++) {
             arr[i] = current.getVal();
             current = current.getNext();
 
         }
-        for(j = 0;j < c.length;j++) {
+        for (j = 0; j < c.length; j++) {
             arr[index+j] = c[j];
         }
 
-        for (int q = i + j; q < arr.length; q++ ) {
+        for (int q = i + j; q < arr.length; q++) {
             arr[q] = current.getVal();
             current = current.getNext();
             q++;
@@ -79,7 +73,7 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public Object get(int index) {
-        CheckIndexException(index);
+        checkIndexException(index);
         Node node = this.head;
         while (index > 0){
             node = node.getNext();
@@ -90,12 +84,12 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList remove(int index) {
-        CheckIndexException(index);
+        checkIndexException(index);
         Object[] arr = new Object[size-1];
         Node current = head;
         int j = 0;
         int i = 0;
-//        for(int i= 0; i <= arr.length; i++)
+//        for (int i= 0; i <= arr.length; i++)
         while(current != null)
         {
             if (i != index)
@@ -111,11 +105,11 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList set(int index, Object e) {
-        CheckIndexException(index);
+        checkIndexException(index);
         Object[] arr = new Object[size];
         Node current = this.head;
 
-        for(int i = 0; i < arr.length; i++)
+        for (int i = 0; i < arr.length; i++)
         {
             if (i != index)
             {
@@ -163,7 +157,7 @@ public class ImmutableLinkedList implements ImmutableList {
         Object[] arr = new Object[size];
         Node current = this.head;
 
-        for(int i = 0; i < arr.length; i++)
+        for (int i = 0; i < arr.length; i++)
         {
             arr[i] = current.getVal();
             current = current.getNext();
@@ -171,34 +165,34 @@ public class ImmutableLinkedList implements ImmutableList {
         return arr;
     }
 
-    public ImmutableLinkedList addFirst(Object e){
-        return add(0,e);
+    public ImmutableLinkedList addFirst(Object e) {
+        return add(0, e);
     } // додає елемент у початок зв'язаного списку
 
 
-    public ImmutableLinkedList addLast(Object e){
-        if (size>0) {
+    public ImmutableLinkedList addLast(Object e) {
+        if (size > 0) {
             return add(this.size, e);
         }
-        return add(0,e);
+        return add(0, e);
     } // додає елемент у кінець зв'язаного списку
 
 
-    public Object getFirst(){
+    public Object getFirst() {
         return get(0);
     }
 
 
-    public Object getLast(){
-        if (size>0) {
+    public Object getLast() {
+        if (size > 0) {
             return get(this.size - 1);
         }
         return -1;
     }
 
 
-    public ImmutableLinkedList removeFirst(){
-        if (size>0) {
+    public ImmutableLinkedList removeFirst() {
+        if (size > 0) {
             return remove(0);
         }
         return new ImmutableLinkedList();
@@ -206,8 +200,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
 
 
-    public ImmutableLinkedList removeLast(){
-        if (size>0) {
+    public ImmutableLinkedList removeLast() {
+        if (size > 0) {
             return remove(this.size - 1);
         }
         return new ImmutableLinkedList();
