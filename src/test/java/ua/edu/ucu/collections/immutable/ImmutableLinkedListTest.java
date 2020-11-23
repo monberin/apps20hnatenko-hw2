@@ -21,7 +21,7 @@ public class ImmutableLinkedListTest {
         Integer[] array = {0, 10, -5, 2};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
         ImmutableLinkedList newArr = arr.add(3);
-        assertEquals((int) newArr.get(4), 3);
+        assertEquals(3, (int) newArr.get(4));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class ImmutableLinkedListTest {
         Integer[] array = {0, 10, -5, 2};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
         ImmutableLinkedList newArr = arr.add(1,3);
-        assertEquals((int) newArr.get(1), 3);
+        assertEquals(3, (int) newArr.get(1));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -45,7 +45,7 @@ public class ImmutableLinkedListTest {
         Integer[] c = {4,0,2,7};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
         ImmutableLinkedList newArr = arr.addAll(c);
-        assertEquals((int) newArr.get(6), 2);
+        assertEquals(2, (int) newArr.get(6));
     }
 
     @Test
@@ -54,7 +54,7 @@ public class ImmutableLinkedListTest {
         Integer[] c = {4,0,2,7};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
         ImmutableLinkedList newArr = arr.addAll(1,c);
-        assertEquals((int) newArr.get(2), 0);
+        assertEquals(0, (int) newArr.get(2));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -70,7 +70,7 @@ public class ImmutableLinkedListTest {
         Integer[] array = {0, 10, -5, 2};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
         ImmutableLinkedList newArr = arr.remove(2);
-        assertEquals((int) newArr.get(2), 2);
+        assertEquals(2, (int) newArr.get(2));
     }
 
     @Test
@@ -78,15 +78,15 @@ public class ImmutableLinkedListTest {
         Integer[] array = {0, 10, -5, 2};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
         ImmutableLinkedList newArr = arr.set(3, 200);
-        assertEquals((int) newArr.get(3), 200);
+        assertEquals(200, (int) newArr.get(3));
     }
 
     @Test
     public void testIndexOf() {
         Integer[] array = {0, 10, -5, 2};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
-        assertEquals(arr.indexOf(3), -1);
-        assertEquals(arr.indexOf(10), 1);
+        assertEquals(-1, arr.indexOf(3));
+        assertEquals(1, arr.indexOf(10));
     }
 
     @Test
@@ -110,7 +110,7 @@ public class ImmutableLinkedListTest {
         Integer[] array = {0, 10, -5, 2};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
         Object first = arr.getFirst();
-        assertEquals(first, 0);
+        assertEquals(0, first);
     }
 
 
@@ -119,7 +119,7 @@ public class ImmutableLinkedListTest {
         Integer[] array = {0, 10, -5, 2};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
         Object last = arr.getLast();
-        assertEquals(last, 2);
+        assertEquals(2, last);
     }
 
     @Test
@@ -135,7 +135,7 @@ public class ImmutableLinkedListTest {
         Integer[] array = {0, 10, -5, 2};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
         ImmutableLinkedList newArr = arr.addLast(3);
-        assertEquals((int) newArr.getLast(), 3);
+        assertEquals(3, (int) newArr.getLast());
     }
 
     @Test
@@ -143,7 +143,7 @@ public class ImmutableLinkedListTest {
         Integer[] array = {0, 10, -5, 2};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
         ImmutableLinkedList newArr = arr.removeLast();
-        assertEquals((int) newArr.getLast(), -5);
+        assertEquals(-5, (int) newArr.getLast());
     }
 
     @Test
@@ -151,7 +151,7 @@ public class ImmutableLinkedListTest {
         Integer[] array = {0, 10, -5, 2};
         ImmutableLinkedList arr = new ImmutableLinkedList(array);
         ImmutableLinkedList newArr = arr.removeFirst();
-        assertEquals((int) newArr.get(0), 10);
+        assertEquals(10, (int) newArr.get(0) );
     }
 
     @Test
@@ -159,7 +159,7 @@ public class ImmutableLinkedListTest {
         Integer[] array = {0, 10, -5, 2};
         ImmutableLinkedList list = new ImmutableLinkedList(array);
         String lst = list.toString();
-        assertEquals("0, 10, -5, 2", lst);
+        assertEquals("[0, 10, -5, 2]", lst);
     }
 
 

@@ -1,7 +1,9 @@
 package ua.edu.ucu.collections.immutable;
 
+import java.util.Arrays;
+
 public class ImmutableLinkedList implements ImmutableList {
-    private Object[] array = {};
+//    private Object[] array = {};
     private int size = 0;
     private Node head;
     private Node tail;
@@ -11,7 +13,7 @@ public class ImmutableLinkedList implements ImmutableList {
     }
 
     public ImmutableLinkedList(Object[] list){
-        this.array = list;
+//        this.array = list;
         for (Object o : list) {
             Node node = new Node(o, null, null);
             if (size == 0) {
@@ -36,7 +38,7 @@ public class ImmutableLinkedList implements ImmutableList {
     public ImmutableLinkedList add(Object e) {
         return addAll(size, new Object[]{e});
     }
-    
+
     @Override
     public ImmutableLinkedList add(int index, Object e) {
         return addAll(index, new Object[]{e});
@@ -51,9 +53,27 @@ public class ImmutableLinkedList implements ImmutableList {
     public ImmutableLinkedList addAll(int index, Object[] c) {
         CheckIndexException(index);
         Object[] arr = new Object[c.length + size];
-        System.arraycopy(c, 0, arr, index, c.length);
-        System.arraycopy(this.array, index, arr, index+c.length, size - index);
-        System.arraycopy(this.array, 0, arr, 0, index);
+//        System.arraycopy(c, 0, arr, index, c.length);
+//        System.arraycopy(this.array, index, arr, index+c.length, size - index);
+//        System.arraycopy(this.array, 0, arr, 0, index);
+//        return new ImmutableLinkedList(arr);
+        int i = 0, j = 0;
+        Node current = this.head;
+
+        for(i = 0; i < index; i++) {
+            arr[i] = current.getVal();
+            current = current.getNext();
+
+        }
+        for(j = 0;j < c.length;j++) {
+            arr[index+j] = c[j];
+        }
+
+        for (int q = i + j; q < arr.length; q++ ) {
+            arr[q] = current.getVal();
+            current = current.getNext();
+            q++;
+        }
         return new ImmutableLinkedList(arr);
     }
 
@@ -72,8 +92,20 @@ public class ImmutableLinkedList implements ImmutableList {
     public ImmutableLinkedList remove(int index) {
         CheckIndexException(index);
         Object[] arr = new Object[size-1];
-        System.arraycopy(this.array, index+1, arr, index, size - (index+1));
-        System.arraycopy(this.array, 0, arr, 0, index);
+        Node current = head;
+        int j = 0;
+        int i = 0;
+//        for(int i= 0; i <= arr.length; i++)
+        while(current != null)
+        {
+            if (i != index)
+            {
+                arr[j] = current.getVal();
+                j++;
+            }
+            current = current.getNext();
+            i++;
+        }
         return new ImmutableLinkedList(arr);
     }
 
@@ -81,18 +113,32 @@ public class ImmutableLinkedList implements ImmutableList {
     public ImmutableLinkedList set(int index, Object e) {
         CheckIndexException(index);
         Object[] arr = new Object[size];
-        System.arraycopy(this.array, index+1, arr, index+1, size - index-1);
-        System.arraycopy(this.array, 0, arr, 0, index);
-        arr[index] = e;
+        Node current = this.head;
+
+        for(int i = 0; i < arr.length; i++)
+        {
+            if (i != index)
+            {
+                arr[i] = current.getVal();
+
+            }
+            else{
+                arr[i] = e;
+            }
+            current = current.getNext();
+        }
         return new ImmutableLinkedList(arr);
     }
 
+
     @Override
     public int indexOf(Object e) {
-        for (int i = 0; i < size; i++){
-            if (this.array[i] == e){
+        Node current = this.head;
+        for (int i = 0; i < this.size; i++){
+            if (current.getVal() == e){
                 return i;
             }
+            current = current.getNext();
         }
         return -1;
     }
@@ -114,14 +160,18 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public Object[] toArray() {
-        return this.array;
+        Object[] arr = new Object[size];
+        Node current = this.head;
+
+        for(int i = 0; i < arr.length; i++)
+        {
+            arr[i] = current.getVal();
+            current = current.getNext();
+        }
+        return arr;
     }
 
     public ImmutableLinkedList addFirst(Object e){
-//        Object[] arr = new Object[1 + size];
-//        arr[0] = e;
-//        System.arraycopy(this.array, 0, arr, 1, size);
-//        return new ImmutableLinkedList(arr);
         return add(0,e);
     } // додає елемент у початок зв'язаного списку
 
@@ -135,13 +185,13 @@ public class ImmutableLinkedList implements ImmutableList {
 
 
     public Object getFirst(){
-        return this.array[0];
+        return get(0);
     }
 
 
     public Object getLast(){
         if (size>0) {
-            return this.array[this.size - 1];
+            return get(this.size - 1);
         }
         return -1;
     }
@@ -164,12 +214,7 @@ public class ImmutableLinkedList implements ImmutableList {
     } // видаляє останній елемент
 
     @Override
-    public String toString(){
-        String strng = "";
-        strng += this.array[0];
-        for (int i = 1; i < this.size; i++) {
-            strng += ", " + this.array[i];
-        }
-        return strng;
+    public String toString() {
+        return Arrays.toString(toArray());
     }
 }

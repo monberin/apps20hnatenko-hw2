@@ -19,6 +19,6 @@ public class StackTest {
         stack.push(0);
         assertEquals(0,  stack.pop());
     }
-    
+
 
 }
