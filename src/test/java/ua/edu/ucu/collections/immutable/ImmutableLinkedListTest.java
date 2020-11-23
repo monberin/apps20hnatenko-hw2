@@ -154,4 +154,13 @@ public class ImmutableLinkedListTest {
         assertEquals((int) newArr.get(0), 10);
     }
 
+    @Test
+    public void testToString() {
+        Integer[] array = {0, 10, -5, 2};
+        ImmutableLinkedList list = new ImmutableLinkedList(array);
+        String lst = list.toString();
+        assertEquals("0, 10, -5, 2", lst);
+    }
+
+
 }

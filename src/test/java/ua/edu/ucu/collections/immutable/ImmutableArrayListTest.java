@@ -105,4 +105,11 @@ public class ImmutableArrayListTest {
         assertArrayEquals(array, newArray);
     }
 
+    @Test
+    public void testToString() {
+        Integer[] array = {0, 10, -5, 2};
+        ImmutableArrayList list = new ImmutableArrayList(array);
+        String lst = list.toString();
+        assertEquals("0, 10, -5, 2", lst);
+    }
 }

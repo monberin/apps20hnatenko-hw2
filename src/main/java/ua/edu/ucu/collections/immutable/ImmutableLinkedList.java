@@ -163,4 +163,13 @@ public class ImmutableLinkedList implements ImmutableList {
         return new ImmutableLinkedList();
     } // видаляє останній елемент
 
+    @Override
+    public String toString(){
+        String strng = "";
+        strng += this.array[0];
+        for (int i = 1; i < this.size; i++) {
+            strng += ", " + this.array[i];
+        }
+        return strng;
+    }
 }

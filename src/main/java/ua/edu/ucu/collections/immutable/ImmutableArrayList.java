@@ -19,7 +19,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     void CheckIndexException(int index) {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             throw new ArrayIndexOutOfBoundsException();
         }
     }
@@ -98,4 +98,14 @@ public class ImmutableArrayList implements ImmutableList {
     public Object[] toArray() {
         return this.array;
     }
+
+    @Override
+    public String toString(){
+        String strng = "";
+        strng += this.array[0];
+        for (int i = 1; i < this.size; i++) {
+            strng += ", " + this.array[i];
+        }
+        return strng;
+    } //повертає рядок, де через кому відображаютсься елементи колекції
 }
